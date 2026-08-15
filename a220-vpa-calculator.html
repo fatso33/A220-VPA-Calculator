@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>A220 DES VPA</title>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA9ElEQVR4nGNkQAIs7Fz/GegA/vz8xghjM9HbcnS7GNEFvG9+xdCwVZ2bJg758/MbIyMhy2ntCHgU4LOcGHmKHTBQYNQBg8cBhFI5zXMBPktg4oY/EhkMfyRS1QGMxJaA6Baf55hPFQeQnQaoFRJEOwCbj6nhCKKjgJCl5EYJyVGAyyJyQ4PkECBkKakhQVFBRI10QXFJSKkjqFIUU+IIqtUF5DqCqpUROY6gem1IqiNoUh2jOwJf1qRZewBmKaFyAaMgklBWgbNf3L1DdT46GPAWEUVFMTXAgIcAE3JHkd7gz89vjEwwxkBYzsCAFAX0dASyXQB62m2lDKnJ5gAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFlElEQVR4nO3dS24cVRSA4WPLUqKwAeYgMWYdrIKVZRWsI2MkmLMBLCxFCoOkO227u1yPW3Uf5/uGdmT34Px16pXkLhrz8O7Dl9qfgf18fnq8q/0ZLlX9MIadiLpRHP6LDT1Tjo7hsF9m8FniqBB2/yUGny32DmG3H27wKWmvEIr/UIPPnkqHcF/yhxl+9lZ6xorUZPCpocQ22LwBDD+1lJi9TQEYfmrbOoOrAzD8tGLLLK4KwPDTmrUzuTgAw0+r1szmogAMP61bOqOzAzD89GLJrM4KwPDTm7kz+2YAhp9ezZndoq9CQG8mA3D0p3dvzfDNAAw/o5iaZadApHY1AEd/RnNrpm0AUnsVgKM/o7o22zYAqT0LwNGf0b2ccRuA1M4BOPqTxeWsP9T8IJd++/PfV1/745cfKnwSMjn/rfpaG+Da4L8kBEo7/YsS9xFtD/+SPwdznWa+2kXw0qEWAXtwF4jUqgSw9mhuC1CaDUBq9+7/k9XDuw9fbABSEwCpVQlg7YMtD8QozQYgtbuaF8FLbmuejv6//vf7+Wuf3n8s/pnIpeoGmHtKc+vPXcYAa1TdAJfmvA16a+BtAtZqJoApc470ImCNLi6C5wy30yHW6CKACBGwj24CiBAB5XUVQIQIKKu7ACJEQDldBhAhAsroNoAIEbBd1wFEiIBtug8gQgSs18WT4LnmDrmnxpwMsQFO5g62bcDJUAFEiIBlhgsgQgTMN9Q1wDXeJGXKkBvgkjtETBk+gAgRcFuKACJEwHVpAogQAa+lCiBCBDyXLoAIEfBdygAiRMBXaQOIEAEJHoTN4SW6vFJvgBOvTuQlgG9EkJMALoggH9cAN3iJLgcb4AZ3iHIQwAQRjE8AbxDB2AQwgwjGJYCZRDAmASwggvEIYCERjEUAK4hgHB6EbeAluv7ZABt4daJ/AthIBH0TQAEi6JdrgMK8RNcXG6Awd4j6IoAdiKAfAtiJCPoggB2JoH0C2JkI2iaAA4igXQI4iAja5DnAwbw/1BYb4GCeGrdFABWIoB0CqEQEbXAN0ADvD9VjAzTAHaJ6BNAIEdQhgIaI4HgCaIwIjiWABongOAJolAiOIYCGiWB/AmicCPblQVgnvES3DxugE16d2IcAOiKC8gTQGRGU5RqgY16i284G6Jg7RNsJoHMi2EYAAxDBegIYhAjWEcBARLCcAAYjgmUEMCARzCeAQYlgHg/CBuclumk2wOD2enVilO0hgARKRzDK8EcIII1SEVx+f4QQBJDIp/cfN10cjzDwLwkgoTURjDj8EQJIa0kEU8PfexgCSMyzAgGkV+L+f8+RCIC0D8EiBMA3WSMQAGdbIuj1NEgApCYAzno9im8hACKizPD3GJAA6HJwSxFAcqWHv7eYBJBYb8O6h4faH4B6Lm97Zo3BX4nklRIx9PJgzQbglUybQQBMGj0Gp0CsMso/zW4DsMoom8EGoKiXMbS+BWwAiuptM9gApOZJMKkJgNQEQGoCIDUBkNpht0F//Onnq1//5++/fN/33/z+XmwAUvMcgNRsAFITAKkJgNTuPz893tX+EFDD56fHOxuA1ARAagIgNQGQ2n3E14uB2h8EjnSaeRuA1ARAaucAnAaRxeWs2wCk9iwAW4DRvZxxG4DUXgVgCzCqa7NtA5Da1QBsAUZza6ZtAFK7GYAtwCimZnlyA4iA3r01w06BSO3NAGwBejVndmdtABHQm7kzO/sUSAT0YsmsLroGEAGtWzqjiy+CRUCr1szmqrtAIqA1a2dy9W1QEdCKLbO46TmACKht6wxufhAmAmopMXtFh9f/NcARSh50i74KYRuwt9IzttvA2gaUtNfBdfcjthDYYu+zisNOWYTAEkedTh9+zi4Ephx9HVn1olUMRNS9edLcXRtRjK21O4X/A7L6bzp55jnBAAAAAElFTkSuQmCC">
+<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFK0lEQVR4nO3cQW4cRRiG4d+WpUThAuxBYs05OAUnyyk4R9ZIsOcCWESKFBbBZmz3zFRPV3dV/fU8u8RR0ot3vpS7O7mLDjy8+/C19TWw3ZfPj3etr6HJBQh4Di0CP+wPFPHcjop71z9ExCzZM+5dfmMhU2KPsO9r/4ZiptQerVT7hAiZLWqtdZWFFjNb1Wpo06dCyOxhy1rfvNBiZi9b2ropaDGzt1sbWx20mDnKLa2tClrMHG1tc8VBi5lW1rRXFLSYaa20watBi5lelLRY/dE3tHQxaOtMb641eTZoMdOrS206cpDKYtDWmd6da/RN0GJmFEutOnKQyougrTOjed2shSYVQZPKc9COG4zqtN2Hlhfyy+9/v/m53376rsGVkMXzv906cqGXQn5N2Kzx9O8Q7yP6i3nNr4OI/xv2TSGpHBr02tW10qxloUnl3u06snh49+GrhSYVQZPKoUGvvbfsXjRrDbHQP//za+tLYBB3Lb4pXPOk8HXMn95/3OWayKFJ0E+uvctxbplFzTlNg77k2jFD1Czp8gxdcmZ2rmZJtwsdURatpeZUlwv9pCRWS82proOOEDXrdB90hKgpN0TQEaKmzDBBR4ia64YKOkLUXDZc0BGi5rwhg44QNcuGDTpC1LzV9ZPCUqXReqqY39AL/aQ0VGudX4qgI0TNN2mCjhA1Sc7QS7ypN6dUC33KHZA5pQ06QtQzSh10hKhnkz7oCFHPZIqgI0Q9i2mCjhD1DKYKOkLU2U0XdISoM5sy6AhRZ5X2SWEpb+rlMu1CP/H+Ry7TBx0h6kwE/R9R5zD9GXqJN/XGZaEXuAMyLkGfIeoxCfoCUY9H0FeIeiyCLiDqcQi6kKjHIOgVRN0/Qa8k6r4J+gai7pcnhRt4U68/FnoD73/0R9Abibovgq5A1P1whq7Mm3ptWejK3AFpS9A7EHU7gt6JqNsQ9I5EfTxB70zUxxL0AUR9HEEfRNTHEPSBRL0/QR9M1PvypLARb+rtw0I34v2PfQi6IVHXJ+jGRF2XM3RHvKm3nYXuiDsg2wm6M6LeRtAdEvXtBN0pUd9G0B0T9XqC7pyo1xH0AERdTtCDEHUZQQ9E1Nd5Ujggb+qdZ6EH5P2P8wQ9KFEvE/TA9oh69A+AoAf36f3Hat8sjh5zhKDT2Br16ddGDlvQidwa9cgBvyboZNZGfS7mUSN3HzqpGkGOeB/bQic1Yow1CDqxrVGPeOwQdHKzLbWgJ7Al6tFWWtCTmGWpBT2J0Zb2VoKewNaYR/owCDq5kWKsQdCJzRZzhKDTqh3zKB+Oh9YXwD5O72qMEmMN3uWYzNa4e7/9Z6Enk325BT2xjHE7cvDC6P/puoXmhdFX20JT5HXcva60habIKMttoUnFk0JSETSpCJpUBE0qu9/l+P6HH9/83F9//uFrvvb845osNKm4bUcqFppUBE0qgiYVQZPK/ZfPj3etLwJq+PL58c5Ck4qgSUXQpHIf8e3s0fpCYIunhi00qQiaVJ6DduxgVKftWmhSETSpvAjasYPRvG7WQpPKm6CtNKNYanVxoUVN78416shBKmeDttL06lKbFxda1PTmWpOOHKRyNWgrTS9KWixaaFHTWmmDxUcOUdPKmvZWnaFFzdHWNrf6m0JRc5RbWrvpLoeo2dutjd18207U7GVLW1Wi9D+YUkONkazyYMVas1WthqqHaK1Zo/YYVn/0ba0ptUcru8ZnrVmy5+gdtqbinttRf3M3OR6Iew4tjp9dnHcFnkMP3z/9Cy5eUCRILfQaAAAAAElFTkSuQmCC">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#04070a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="A220 VPA">
+<style>
+  :root{
+    --bezel: #16191b;
+    --bezel-edge: #26292c;
+    --screen: #04070a;
+    --line: #1c2a2e;
+    --white: #eef3f2;
+    --dim: #7a8a8c;
+    --cyan: #4fe0ff;
+    --cyan-dim: #2a6a78;
+    --green: #35ff6b;
+    --green-dim: #1f7a3c;
+    --amber: #ffb020;
+    --amber-dim: #7a5410;
+    --screen-top: #060a0c;
+    --screen-border: #000;
+    --screen-shadow: rgba(0,0,0,0.9);
+    --select-bg: #06090b;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Consolas, Menlo, monospace;
+  }
+  body.theme-light{
+    --bezel: #d9dcdb;
+    --bezel-edge: #c2c6c5;
+    --screen: #eef1ef;
+    --line: #c5cbca;
+    --white: #14201d;
+    --dim: #5c6a67;
+    --cyan: #007391;
+    --cyan-dim: #6fa3b0;
+    --green: #157a34;
+    --green-dim: #79b98c;
+    --amber: #915800;
+    --amber-dim: #cc9a4d;
+    --screen-top: #ffffff;
+    --screen-border: #b7bcbb;
+    --screen-shadow: rgba(0,0,0,0.06);
+    --select-bg: #e4e8e7;
+  }
+
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{margin:0; padding:0; background:#000; font-family: var(--mono);}
+  body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding: 18px 10px 40px;
+    background: radial-gradient(ellipse at 50% -10%, #1a1d1f 0%, #000 60%);
+    transition: background 0.2s ease;
+  }
+  body.theme-light{
+    background: radial-gradient(ellipse at 50% -10%, #f2f4f3 0%, #d5d9d8 60%);
+  }
+
+  .unit{
+    width:100%;
+    max-width: 460px;
+    background: var(--bezel);
+    border: 1px solid var(--bezel-edge);
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .bezel-label{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 2px 8px 8px;
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .theme-toggle{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background: transparent;
+    border: 1px solid var(--bezel-edge);
+    border-radius: 20px;
+    padding: 3px 4px;
+    cursor: pointer;
+    font-family: var(--mono);
+  }
+  .theme-toggle .track{
+    position: relative;
+    width: 30px;
+    height: 15px;
+    background: var(--select-bg);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+  body.theme-light .theme-toggle .track{ background: #c9cecd; }
+  .theme-toggle .knob{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--cyan);
+    transition: left 0.15s ease, background 0.15s ease;
+  }
+  body.theme-light .theme-toggle .knob{ left: 16px; background: var(--amber); }
+  .theme-toggle .tlabel{
+    color: var(--dim);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .screen{
+    background: linear-gradient(180deg, var(--screen-top) 0%, var(--screen) 100%);
+    border: 1px solid var(--screen-border);
+    border-radius: 6px;
+    padding: 14px 14px 10px;
+    box-shadow: inset 0 0 30px var(--screen-shadow), inset 0 0 2px rgba(79,224,255,0.15);
+  }
+
+  .titlebar{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .titlebar .l{ color: var(--white); font-size: 13px; letter-spacing: 3px; font-weight:600;}
+  .titlebar .r{ color: var(--cyan); font-size: 11px; letter-spacing: 2px;}
+
+  .input-group{
+    background: rgba(79,224,255,0.035);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--cyan-dim);
+    border-radius: 6px;
+    padding: 10px 12px 12px;
+    margin-top: 10px;
+  }
+  .input-group:first-of-type{ margin-top: 0; }
+
+  .field-label{
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin: 0 0 6px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .field-label .hint{ color: var(--cyan-dim); }
+
+  .row{ display:flex; gap:8px; }
+  .row > *{ flex:1; }
+
+  input[type="number"]{
+    width:100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding: 6px 2px 8px;
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance: none; margin:0; }
+  input[type="number"]:focus{ border-bottom-color: var(--cyan); }
+  input[type="number"]::placeholder{ color: var(--dim); opacity: 0.6; }
+
+  select{
+    width:100%;
+    background: var(--select-bg);
+    border: 1px solid var(--line);
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 10px 8px;
+    border-radius: 4px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--cyan) 50%), linear-gradient(135deg, var(--cyan) 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 12px) center;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .toggle-row{
+    display:flex;
+    gap:8px;
+    margin-top: 2px;
+  }
+  .toggle-btn{
+    flex:1;
+    text-align:center;
+    padding: 10px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--dim);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  .toggle-btn.active-off{
+    color: var(--green);
+    border-color: var(--green-dim);
+    background: rgba(53,255,107,0.06);
+  }
+  .toggle-btn.active-on{
+    color: var(--amber);
+    border-color: var(--amber-dim);
+    background: rgba(255,176,32,0.08);
+  }
+
+  .divider{
+    border: none;
+    border-top: 1px dashed var(--line);
+    margin: 16px 0 12px;
+  }
+
+  .output-block{
+    text-align:center;
+    padding: 6px 0 14px;
+  }
+  .output-label{
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+  .output-value{
+    color: var(--green);
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 18px rgba(53,255,107,0.35);
+    line-height: 1.1;
+    margin-top: 2px;
+  }
+  .output-sub{
+    color: var(--cyan-dim);
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .glide-visual{
+    display:block;
+    margin: 6px auto 2px;
+  }
+
+  .steps{
+    margin-top: 4px;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+  .steps-title{
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .step-line{
+    display:flex;
+    justify-content:space-between;
+    padding: 4px 0;
+    font-size: 12.5px;
+    color: var(--white);
+    border-bottom: 1px dotted rgba(255,255,255,0.06);
+  }
+  .step-line .desc{ color: var(--dim); flex:1; }
+  .step-line .delta{ color: var(--cyan); min-width: 62px; text-align:right; }
+  .step-line.total{
+    border-bottom: none;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+    padding-top: 8px;
+    font-size: 13px;
+  }
+  .step-line.total .desc{ color: var(--white); letter-spacing: 1px; }
+  .step-line.total .delta{ color: var(--green); font-weight: 600; }
+
+  .footnote{
+    text-align:center;
+    color: #4a5658;
+    font-size: 9.5px;
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+    padding: 0 6px;
+    line-height: 1.5;
+  }
+
+  .install-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px;
+    background: rgba(53,255,107,0.06);
+    border: 1px solid var(--green-dim);
+    border-radius: 6px;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  .install-btn:active{ background: rgba(53,255,107,0.14); }
+  .install-icon{ font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="unit">
+  <div class="bezel-label">
+    <span>MCDU</span>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+      <span class="tlabel" id="themeLabel">DARK</span>
+      <span class="track"><span class="knob"></span></span>
+    </button>
+    <span>DES • PERF</span>
+  </div>
+
+  <div class="screen">
+    <div class="titlebar">
+      <span class="l">DES VPA</span>
+      <span class="r">A220</span>
+    </div>
+
+    <div class="input-group">
+      <div class="field-label"><span>LDG WEIGHT</span><span class="hint">EST</span></div>
+      <div class="row">
+        <input type="number" id="ldgWeight" placeholder="0.0" step="0.1" inputmode="decimal">
+        <select id="wtUnit" style="max-width:110px; flex:none;">
+          <option value="t">T (metric)</option>
+          <option value="kg">KG</option>
+          <option value="lb" selected>LB</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="field-label"><span>WIND COMPONENT</span><span class="hint">HEAD(−) / TAIL(+) KT</span></div>
+      <input type="number" id="wind" placeholder="0" step="1" inputmode="decimal">
+    </div>
+
+    <div class="input-group">
+      <div class="field-label"><span>ISA DEVIATION</span><span class="hint">°C</span></div>
+      <input type="number" id="isa" placeholder="0" step="1" inputmode="decimal">
+    </div>
+
+    <div class="input-group">
+      <div class="field-label"><span>ANTI-ICE</span><span class="hint">ANTICIPATED</span></div>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn active-off" id="btnOff">OFF</button>
+        <button type="button" class="toggle-btn" id="btnOn">ON</button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="output-block">
+      <div class="output-label">TARGET VPA</div>
+      <div class="output-value" id="vpaOut">3.0°</div>
+      <svg class="glide-visual" id="glideSvg" width="180" height="70" viewBox="0 0 180 70"></svg>
+      <div class="output-sub" id="wtTonsOut">LDG WT 24.9 T</div>
+    </div>
+
+    <div class="steps">
+      <div class="steps-title"><span>CALC</span><span>DELTA</span></div>
+      <div id="stepsList"></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    REFERENCE / TRAINING TOOL ONLY — NOT FOR OPERATIONAL USE.<br>
+    VERIFY ALL DESCENT PLANNING AGAINST CURRENT OPS DATA / FCOM.
+  </div>
+
+  <button type="button" class="install-btn" id="installBtn" style="display:none;">
+    <span class="install-icon">⇩</span> INSTALL APP
+  </button>
+</div>
+
+<script>
+  const ldgWeightEl = document.getElementById('ldgWeight');
+  const wtUnitEl = document.getElementById('wtUnit');
+  const windEl = document.getElementById('wind');
+  const isaEl = document.getElementById('isa');
+  const btnOff = document.getElementById('btnOff');
+  const btnOn = document.getElementById('btnOn');
+  const vpaOut = document.getElementById('vpaOut');
+  const wtTonsOut = document.getElementById('wtTonsOut');
+  const stepsList = document.getElementById('stepsList');
+  const glideSvg = document.getElementById('glideSvg');
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeLabel = document.getElementById('themeLabel');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('theme-light');
+    const isLight = document.body.classList.contains('theme-light');
+    themeLabel.textContent = isLight ? 'LIGHT' : 'DARK';
+    calculate();
+  });
+
+  let antiIce = false;
+
+  btnOff.addEventListener('click', () => { antiIce = false; updateToggle(); calculate(); });
+  btnOn.addEventListener('click', () => { antiIce = true; updateToggle(); calculate(); });
+
+  function updateToggle(){
+    btnOff.className = 'toggle-btn' + (!antiIce ? ' active-off' : '');
+    btnOn.className = 'toggle-btn' + (antiIce ? ' active-on' : '');
+  }
+
+  function toMetricTons(value, unit){
+    if (unit === 't') return value;
+    if (unit === 'kg') return value / 1000;
+    if (unit === 'lb') return (value * 0.45359237) / 1000;
+    return value;
+  }
+
+  function fmt(n, d=2){
+    const v = Number(n.toFixed(d));
+    return (v > 0 ? '+' : '') + (v === 0 ? (0).toFixed(d) : v.toFixed(d));
+  }
+
+  function drawGlide(angleDeg){
+    const runwayY = 58;
+    const startX = 14, startY = 12;
+    const touchdownX = 168;
+    const runLen = touchdownX - startX;
+
+    const isLight = document.body.classList.contains('theme-light');
+    const runwayColor = isLight ? '#c5cbca' : '#1c2a2e';
+    const rwyTextColor = isLight ? '#5c6a67' : '#4a5658';
+    const pathColor = isLight ? '#157a34' : '#35ff6b';
+    const startColor = isLight ? '#007391' : '#4fe0ff';
+    const dimColor = isLight ? '#b6bcbb' : '#2a3336';
+
+    if (angleDeg === null || isNaN(angleDeg)){
+      glideSvg.innerHTML = `
+        <line x1="0" y1="${runwayY}" x2="180" y2="${runwayY}" stroke="${runwayColor}" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="152" y="${runwayY+11}" fill="${rwyTextColor}" font-size="8" font-family="ui-monospace, monospace">RWY</text>
+        <line x1="${startX}" y1="${startY}" x2="${touchdownX}" y2="${runwayY}" stroke="${dimColor}" stroke-width="2" stroke-dasharray="4,4"/>
+        <circle cx="${startX}" cy="${startY}" r="2.5" fill="${dimColor}"/>
+      `;
+      return;
+    }
+
+    const angleRad = angleDeg * Math.PI / 180;
+
+    // descend from startY down toward the runway at the computed angle
+    let endX = startX + runLen;
+    let endY = startY + runLen * Math.tan(angleRad);
+    if (endY > runwayY){
+      // path would go below the runway before reaching touchdownX - clip to runway
+      const clippedLen = (runwayY - startY) / Math.tan(angleRad);
+      endX = startX + clippedLen;
+      endY = runwayY;
+    }
+
+    // arrow direction along the descent path
+    const dx = endX - startX, dy = endY - startY;
+    const len = Math.sqrt(dx*dx + dy*dy) || 1;
+    const ux = dx/len, uy = dy/len;
+    const ah = 7;
+    const perpX = -uy, perpY = ux;
+
+    glideSvg.innerHTML = `
+      <line x1="0" y1="${runwayY}" x2="180" y2="${runwayY}" stroke="${runwayColor}" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="152" y="${runwayY+11}" fill="${rwyTextColor}" font-size="8" font-family="ui-monospace, monospace">RWY</text>
+      <line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="${pathColor}" stroke-width="2"/>
+      <circle cx="${startX}" cy="${startY}" r="2.5" fill="${startColor}"/>
+      <path d="M ${endX - ux*ah - perpX*4} ${endY - uy*ah - perpY*4} L ${endX} ${endY} L ${endX - ux*ah + perpX*4} ${endY - uy*ah + perpY*4}" fill="none" stroke="${pathColor}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    `;
+  }
+
+  function calculate(){
+    if (ldgWeightEl.value === ''){
+      vpaOut.textContent = '--.--°';
+      wtTonsOut.textContent = 'LDG WT -- T';
+      stepsList.innerHTML = `<div class="step-line"><span class="desc">AWAITING LDG WEIGHT ENTRY</span><span class="delta">--</span></div>`;
+      drawGlide(null);
+      return;
+    }
+
+    const rawWeight = parseFloat(ldgWeightEl.value) || 0;
+    const unit = wtUnitEl.value;
+    const wind = parseFloat(windEl.value) || 0;
+    const isa = parseFloat(isaEl.value) || 0;
+
+    const weightTons = toMetricTons(rawWeight, unit);
+
+    const base = 3.0;
+
+    let weightDelta;
+    if (weightTons < 55){
+      weightDelta = ((55 - weightTons) / 5) * 0.2;
+    } else {
+      weightDelta = -((weightTons - 55) / 5) * 0.1;
+    }
+
+    const isaDelta = -(isa / 10) * 0.1;
+    const windDelta = -(wind / 10) * 0.1;
+    const antiIceDelta = antiIce ? -0.2 : 0;
+
+    const total = base + weightDelta + isaDelta + windDelta + antiIceDelta;
+
+    vpaOut.textContent = total.toFixed(2) + '°';
+    wtTonsOut.textContent = 'LDG WT ' + weightTons.toFixed(2) + ' T';
+
+    const windLabel = wind === 0 ? 'CALM' : (wind < 0 ? Math.abs(wind) + 'KT HEAD' : wind + 'KT TAIL');
+    const weightLabel = (weightTons < 55 ? (55-weightTons).toFixed(2) + 'T UNDER' : weightTons > 55 ? (weightTons-55).toFixed(2) + 'T OVER' : 'AT 55T');
+
+    stepsList.innerHTML = `
+      <div class="step-line"><span class="desc">BASE VPA (55T REF)</span><span class="delta">${base.toFixed(2)}°</span></div>
+      <div class="step-line"><span class="desc">WEIGHT ${weightTons.toFixed(2)}T (${weightLabel})</span><span class="delta">${fmt(weightDelta)}°</span></div>
+      <div class="step-line"><span class="desc">ISA DEV ${isa >= 0 ? '+' : ''}${isa}°C</span><span class="delta">${fmt(isaDelta)}°</span></div>
+      <div class="step-line"><span class="desc">WIND ${windLabel}</span><span class="delta">${fmt(windDelta)}°</span></div>
+      <div class="step-line"><span class="desc">ANTI-ICE ${antiIce ? 'ON' : 'OFF'}</span><span class="delta">${fmt(antiIceDelta)}°</span></div>
+      <div class="step-line total"><span class="desc">TARGET VPA</span><span class="delta">${total.toFixed(2)}°</span></div>
+    `;
+
+    drawGlide(total);
+  }
+
+  [ldgWeightEl, wtUnitEl, windEl, isaEl].forEach(el => {
+    el.addEventListener('input', calculate);
+    el.addEventListener('change', calculate);
+  });
+
+  updateToggle();
+  calculate();
+
+  // Register service worker (enables PWA installability when hosted over HTTPS)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+
+  // Native "Install App" prompt handling
+  const installBtn = document.getElementById('installBtn');
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'flex';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    installBtn.disabled = true;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+    installBtn.disabled = false;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+    deferredPrompt = null;
+  });
+</script>
+
+</body>
+</html>
